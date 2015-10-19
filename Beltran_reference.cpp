@@ -1,0 +1,170 @@
+
+// Giselle Beltran
+// 15 October 2016
+// CSS Labwork - Pass by reference
+
+#include<iostream>
+#include<cassert>
+#include<cmath>
+
+using namespace std;
+
+void sort(int& numA, int& numB, int& numC);
+/*
+Summary: A function that sorts three ints from smallest to largest
+Precondition: The input has to be ints from 0-100
+Postcondition: Will return three integers from smallest to the largest
+*/
+
+void numDigits(int  valA, int& n); 
+/*
+Summary: A function that returns the number of integers in the number.
+Precondition: Values of int should be between -10,000 and 10,000 inclusive.
+Postcondition: Returns the amount of integers in the number 
+*/
+
+void computeSphere(double& a, double& v, double r);
+/*
+Summary: The function will intake the radius (type double) and will calculate the area + volume of the sphere. 
+Precondition: The radius will be type double and greater than or equal to 0 and less than or equal to 10,000.
+Postcondition: Result should be a double value for the area and volume 
+*/
+
+void swap(int& A, int& B);
+/*
+Summary: Exchanges the value of two integers 
+Precondition: Receives two integers
+Postcondition: Changes the value of the two integers with eachother 
+
+*/
+
+int main()
+ {
+   //sorting function
+   int num1 = 4;
+   int num2 = 2;
+   int num3 = 8;
+   
+   //***The couts are just there so I can visualize what's happening***
+   //cout << "Sorting numbers: " << num1 << num2 << num3 << endl;
+   sort( num1, num2, num3);
+   //cout << "Numbers sorted: " << num1 << num2 << num3 << endl;
+   assert( num1 == 2 );
+   assert( num2 == 4 );
+   assert( num3 == 8 );
+   
+   
+   //numDigits function
+   int number = 2480;
+   int digits = 0;
+   
+   //cout << "Before calculation of ints: " << digits << endl;
+   numDigits( number, digits );
+   //cout << "After calculation of ints: " << digits << endl;
+   assert( digits == 4 );
+   
+   //computeSphere function
+   double const E = .00001;
+   double radius= 5.0;
+   double area = 0;
+   double volume = 0;
+   
+   //cout << "Before calculations: " << "Area = " << area << " Volume = " << volume << endl;
+   computeSphere( area, volume, radius);
+   //cout << "After calculations: " << "Area = " << area << " Volume = " << volume << endl;
+   assert( area == 314.0 );
+   assert( fabs(volume - 523.33 ) > E);
+   
+   //swap function
+   int x = 8;
+   int y = 1;
+   
+   //cout << "Before swapping: " << "X is - " << x << " and" << " Y is - " << y << endl;
+   swap(x,y);
+   //cout << "After swapping: " << "X is - " << x << " and" << " Y is - " << y << endl;
+   assert( x == 1 );
+   assert( y == 8 );
+   
+   return 0;
+ }
+ 
+ //function definitions
+ void sort(int& numA, int& numB, int& numC)
+ {
+    if ( numA > numB )
+    {
+      int temp;
+      
+      temp = numA;
+      numA = numB;
+      numB = temp;
+    }
+    if ( numA > numC )
+    {
+        int temp;
+        
+        temp = numA;
+        numA = numC;
+        numC = temp;
+    }
+    if ( numB > numC )
+    {
+        int temp;
+        
+        temp = numB;
+        numB = numC;
+        numC = temp;
+    }
+    return;
+}
+
+
+void numDigits(int  valA, int& n)
+ {  
+    n = 1;
+    
+    if( valA < -9 )
+    {
+      while (valA < -9)
+        {
+            valA = valA/10;
+            n++;
+        }
+     }
+     else if (valA > 9 )
+      {
+        while(valA > 9)
+       {
+            valA=valA/10;
+            n++;
+        }
+      }
+     else
+        {
+            n = 1;
+        }
+     return;    
+}
+
+//
+void computeSphere(double& area, double& volume, double radius)
+ {
+ 
+    area = ( ( 4 * 3.14 ) * radius * radius );
+    volume = ( ( 4 / 3) * (3.14 * radius * radius * radius ) );
+
+    return ;
+ }
+
+//
+void swap(int& A, int& B)
+ {
+   int temp;
+   
+   temp = A;
+   A = B;
+   B = temp;
+   
+   return;
+ }
+ 
